@@ -37,9 +37,50 @@
  */
 
 const base = require('./base'); 
-// var testCase = [3,2,0,-4];
-// var head = base.convert2List(testCase);
+var head = new base.listNode(1);
+var node1 = new base.listNode(2);
+head.next = node1;
+node1.next = head;
 
-var hasCycle = function(head) {
+var hasCycle1 = function(head){
+    // very funny idea, 
+    // using the run-chasing, 
+    // in a cycle, the fast will meet the slow at a certain time 
+    if (head == null || head.next == null) {
+        return false;
+    }
+    var slow = head;
+    var fast = head.next;
+    while (slow != fast) {
+        if (fast == null || fast.next == null) {
+            return false;
+        }
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return true;
+}
+
+var hasCycle = function(head){
+    var pos = -1;
+    var cursor = head;
+    var nodeStorage = [];
+
+    while(head && head.next){
+        nodeStorage.push(head);
+        
+        cursor = head.next;
+        head.next = null;
+        head = cursor;        
+    }
     
-};
+    for(var i = 0; i < nodeStorage.length; i++){
+        if ( nodeStorage[i] == head ){
+            pos = i;
+            break;
+        }
+    }
+    return pos;
+}
+
+console.log(hasCycle(head));
