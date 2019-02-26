@@ -1,7 +1,6 @@
 /* 
 Link: https://leetcode.com/problems/middle-of-the-linked-list/
-
-Description:
+876. Middle of the Linked List
 Given a non-empty, singly linked list with head node head, return a middle node of linked list.
 If there are two middle nodes, return the second middle node.
 
@@ -24,3 +23,43 @@ Note:
 The number of nodes in the given list will be between 1 and 100.
 */
 
+// 
+function listNode(value){
+    this.nodeVal = value;
+    this.next = null;
+}
+
+var buildList = function(nodeNum){
+    var headNode = new listNode();
+    var fixedNode = headNode;
+    for (let index = 0; index < nodeNum; index++) {
+        var node = new listNode(index); 
+        headNode.next = node;
+        headNode = headNode.next;
+    }
+    return fixedNode.next; // move one step
+}
+
+var getMiddleNode = function (headNode){
+    var move1StepEachNode = move2StepEachNode = headNode;
+    while (move2StepEachNode && move2StepEachNode.next) {
+        move1StepEachNode = move1StepEachNode.next;
+        move2StepEachNode = move2StepEachNode.next.next; 
+    }
+
+    return move1StepEachNode;
+}
+
+var outputList = function(nodelist){
+    var locallist = null;
+    locallist = nodelist;
+    while(locallist ) {
+        console.log(locallist.value);
+        locallist = locallist.next;
+    }
+}
+
+var headNode = buildList(10);
+outputList(headNode); // check the value
+var middleNode = getMiddleNode(headNode);
+outputList(middleNode); // check the output
