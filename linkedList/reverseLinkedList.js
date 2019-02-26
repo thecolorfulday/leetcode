@@ -11,7 +11,6 @@ Follow up:
 
 A linked list can be reversed either iteratively or recursively. Could you implement both?
 */
-
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -23,10 +22,11 @@ A linked list can be reversed either iteratively or recursively. Could you imple
  * @param {ListNode} head
  * @return {ListNode}
  */
-
-function listNode(value){
-    this.nodeVal = value;
-    this.next = null;
+class listNode {
+    constructor(value) {
+        this.nodeVal = value;
+        this.next = null;
+    }
 }
 
 var buildList = function(nodeNum){
@@ -38,7 +38,7 @@ var buildList = function(nodeNum){
         headNode = headNode.next;
     }
     return fixedNode.next; // move one step
-}
+};
 
 var outputList = function(nodelist){
     var locallist = null;
@@ -47,7 +47,7 @@ var outputList = function(nodelist){
         console.log(locallist.value);
         locallist = locallist.next;
     }
-}
+};
 
 var reverseList = function(head){
     // lterative way 
@@ -62,7 +62,7 @@ var reverseList = function(head){
         newHead = current;
     }  
     return newHead;
-}
+};
 
 var reverseList1 = function(head) {
     // using recursive 
@@ -102,4 +102,4 @@ function buildReverseNode(right, left){
        head = right;
     }
     return head;
-}
+};

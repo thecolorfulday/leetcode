@@ -22,11 +22,11 @@ Note:
 
 The number of nodes in the given list will be between 1 and 100.
 */
-
-// 
-function listNode(value){
-    this.nodeVal = value;
-    this.next = null;
+class listNode{
+    constructor(value){
+        this.nodeVal = value;
+        this.next = null;
+    }
 }
 
 var buildList = function(nodeNum){
